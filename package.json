@@ -1,0 +1,11 @@
+{
+  "name": "morpheus",
+  "version": "1.0.0",
+  "description": "A tool to export Plex library metadata into a graph database",
+  "scripts": {
+    "load": "node src/loadMovies.js"
+  },
+  "dependencies": {
+    "axios": "^0.21.0"
+  }
+}

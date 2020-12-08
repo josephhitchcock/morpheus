@@ -1,0 +1,6 @@
+node_modules
+
+# Don't check in any generated files
+/output/*
+# Keep the output directory to store generated files
+!/output/.gitkeep
