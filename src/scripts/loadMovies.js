@@ -14,7 +14,7 @@ const { getMovies, getMovie } = require('../requests');
     key,
   }));
 
-  const startTime = new Date().now;
+  const startTime = new Date().getTime();
 
   for (const [index, { key }] of queue.entries()) {
     const data = await getMovie(key);
@@ -44,6 +44,7 @@ const { getMovies, getMovie } = require('../requests');
 
       const percent = ((index + 1) / queue.length) * 100;
       const formattedPercent = percent.toFixed(2).padStart(6, ' ');
+
       console.clear();
       console.log(`${formattedPercent}% | ${title} (${year})`);
 
@@ -130,11 +131,13 @@ const { getMovies, getMovie } = require('../requests');
     });
   }
 
-  const endTime = new Date().now;
+  const endTime = new Date().getTime();
+
   const count = queue.length.toLocaleString();
-  const difference = endTime - startTime / 1000;
+  const difference = (endTime - startTime) / 1000;
   const minutes = Math.floor(difference / 60);
-  const seconds = difference % 60;
+  const seconds = Math.round(difference % 60);
+
   console.clear();
   console.log(`Exported ${count} movies in ${minutes}m ${seconds}s`);
 })();
