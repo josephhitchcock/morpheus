@@ -18,6 +18,7 @@ class Guid extends Node {
       },
     ];
     super(label, data, props);
+    this.getID = () => `guid/${this.data.id}`;
   }
 }
 

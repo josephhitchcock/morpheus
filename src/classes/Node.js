@@ -11,11 +11,14 @@ class Node {
       const { key, type } = entry;
       return `${key}:${type}`;
     };
+    this.getID = () => `id/${this.data.id}`;
     this.getProp = entry => {
       const { key, access, type } = entry;
       let value = this.data[access || key];
       if (!value) {
         value = '';
+      } else if (type === 'ID') {
+        value = this.getID();
       } else if (type === 'string') {
         value = escapeQuotes(value);
       } else if (type === 'boolean') {
@@ -26,7 +29,7 @@ class Node {
   }
 
   get id() {
-    return String(this.data.id);
+    return this.getID();
   }
 
   writeHeader() {

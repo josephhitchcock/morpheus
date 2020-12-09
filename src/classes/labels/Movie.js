@@ -87,10 +87,7 @@ class Movie extends Node {
       },
     ];
     super(label, data, props);
-  }
-
-  get id() {
-    return String(this.data.ratingKey);
+    this.getID = () => `key/${this.data.ratingKey}`;
   }
 }
 
