@@ -2,8 +2,9 @@ const Node = require('../Node');
 
 class Country extends Node {
   constructor(data) {
-    const label = 'Country';
-    const props = [
+    super(data);
+    this.label = 'Country';
+    this.props = [
       {
         key: 'id',
         type: 'ID',
@@ -14,7 +15,6 @@ class Country extends Node {
         type: 'string',
       },
     ];
-    super(label, data, props);
   }
 }
 

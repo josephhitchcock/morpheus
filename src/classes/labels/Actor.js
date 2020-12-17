@@ -2,8 +2,9 @@ const Node = require('../Node');
 
 class Actor extends Node {
   constructor(data) {
-    const label = 'Actor';
-    const props = [
+    super(data);
+    this.label = 'Actor';
+    this.props = [
       {
         key: 'id',
         type: 'ID',
@@ -19,7 +20,6 @@ class Actor extends Node {
         type: 'string',
       },
     ];
-    super(label, data, props);
   }
 }
 

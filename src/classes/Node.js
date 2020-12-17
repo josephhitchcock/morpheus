@@ -3,22 +3,20 @@ const fs = require('fs');
 const { escapeQuotes } = require('../utils');
 
 class Node {
-  constructor(label, data, props) {
-    this.label = label;
+  constructor(data) {
     this.data = data;
-    this.props = props;
+    this._id = data.id;
     this.getHeader = entry => {
       const { key, type } = entry;
       return `${key}:${type}`;
     };
-    this.getID = () => `id/${this.data.id}`;
     this.getProp = entry => {
       const { key, access, type } = entry;
       let value = this.data[access || key];
       if (!value) {
         value = '';
       } else if (type === 'ID') {
-        value = this.getID();
+        value = this._id;
       } else if (type === 'string') {
         value = escapeQuotes(value);
       } else if (type === 'boolean') {
@@ -29,7 +27,7 @@ class Node {
   }
 
   get id() {
-    return this.getID();
+    return this._id;
   }
 
   writeHeader() {

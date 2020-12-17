@@ -2,8 +2,9 @@ const Node = require('../Node');
 
 class Collection extends Node {
   constructor(data) {
-    const label = 'Collection';
-    const props = [
+    super(data);
+    this.label = 'Collection';
+    this.props = [
       {
         key: 'id',
         type: 'ID',
@@ -14,7 +15,6 @@ class Collection extends Node {
         type: 'string',
       },
     ];
-    super(label, data, props);
   }
 }
 

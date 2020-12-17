@@ -2,8 +2,9 @@ const Node = require('../Node');
 
 class Audio extends Node {
   constructor(data) {
-    const label = 'Audio';
-    const props = [
+    super(data);
+    this.label = 'Audio';
+    this.props = [
       {
         key: 'id',
         type: 'ID',
@@ -47,7 +48,6 @@ class Audio extends Node {
         type: 'string',
       },
     ];
-    super(label, data, props);
   }
 }
 

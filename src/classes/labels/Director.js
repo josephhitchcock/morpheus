@@ -2,8 +2,9 @@ const Node = require('../Node');
 
 class Director extends Node {
   constructor(data) {
-    const label = 'Director';
-    const props = [
+    super(data);
+    this.label = 'Director';
+    this.props = [
       {
         key: 'id',
         type: 'ID',
@@ -14,7 +15,6 @@ class Director extends Node {
         type: 'string',
       },
     ];
-    super(label, data, props);
   }
 }
 

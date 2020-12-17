@@ -2,8 +2,9 @@ const Node = require('../Node');
 
 class Video extends Node {
   constructor(data) {
-    const label = 'Video';
-    const props = [
+    super(data);
+    this.label = 'Video';
+    this.props = [
       {
         key: 'id',
         type: 'ID',
@@ -42,7 +43,6 @@ class Video extends Node {
         type: 'string',
       },
     ];
-    super(label, data, props);
   }
 }
 

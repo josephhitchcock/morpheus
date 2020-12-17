@@ -2,8 +2,9 @@ const Node = require('../Node');
 
 class Subtitle extends Node {
   constructor(data) {
-    const label = 'Subtitle';
-    const props = [
+    super(data);
+    this.label = 'Subtitle';
+    this.props = [
       {
         key: 'id',
         type: 'ID',
@@ -34,7 +35,6 @@ class Subtitle extends Node {
         type: 'string',
       },
     ];
-    super(label, data, props);
   }
 }
 

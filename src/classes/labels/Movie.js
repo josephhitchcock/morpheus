@@ -2,11 +2,12 @@ const Node = require('../Node');
 
 class Movie extends Node {
   constructor(data) {
-    const label = 'Movie';
-    const props = [
+    super(data);
+    this._id = data.key;
+    this.label = 'Movie';
+    this.props = [
       {
         key: 'key',
-        access: 'ratingKey',
         type: 'ID',
       },
       {
@@ -86,8 +87,6 @@ class Movie extends Node {
         type: 'string',
       },
     ];
-    super(label, data, props);
-    this.getID = () => `key/${this.data.ratingKey}`;
   }
 }
 

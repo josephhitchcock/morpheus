@@ -2,8 +2,9 @@ const Node = require('../Node');
 
 class Producer extends Node {
   constructor(data) {
-    const label = 'Producer';
-    const props = [
+    super(data);
+    this.label = 'Producer';
+    this.props = [
       {
         key: 'id',
         type: 'ID',
@@ -14,7 +15,6 @@ class Producer extends Node {
         type: 'string',
       },
     ];
-    super(label, data, props);
   }
 }
 
