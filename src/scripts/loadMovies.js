@@ -119,14 +119,13 @@ const { getMovies, getMovie } = require('../requests');
       });
 
       Role.forEach(data => {
-        const { role } = data;
         const actor = nodeFactory.add('Actor', data);
-        nodeFactory.relate(actor, 'ACTED_IN', movie, role);
+        nodeFactory.relate(actor, 'ACTED_IN', movie, data);
       });
 
       Review.forEach(data => {
-        const review = nodeFactory.add('Review', data);
-        nodeFactory.relate(review, 'CRITIQUES', movie);
+        const critic = nodeFactory.add('Critic', data);
+        nodeFactory.relate(critic, 'REVIEWED', movie, data);
       });
     });
   }

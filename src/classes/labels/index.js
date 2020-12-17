@@ -12,7 +12,7 @@ const Country = require('./Country');
 const Guid = require('./Guid');
 const Collection = require('./Collection');
 const Actor = require('./Actor');
-const Review = require('./Review');
+const Critic = require('./Critic');
 
 module.exports = {
   Movie,
@@ -29,5 +29,5 @@ module.exports = {
   Guid,
   Collection,
   Actor,
-  Review,
+  Critic,
 };

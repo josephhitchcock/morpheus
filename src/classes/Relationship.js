@@ -3,17 +3,46 @@ const fs = require('fs');
 const { escapeQuotes } = require('../utils');
 
 class Relationship {
-  constructor(start, type, end, role) {
+  constructor(start, type, end, data = {}) {
     this.start = start;
     this.type = type;
     this.end = end;
-    this.role = role;
-    this.getRole = () => {
-      let value = this.role;
+    this.data = data;
+    this.props = [
+      {
+        key: 'role',
+        type: 'string',
+      },
+      {
+        key: 'text',
+        type: 'string',
+      },
+      {
+        key: 'image',
+        type: 'string',
+      },
+      {
+        key: 'link',
+        type: 'string',
+      },
+      {
+        key: 'source',
+        type: 'string',
+      },
+    ];
+    this.getHeader = entry => {
+      const { key, type } = entry;
+      return `${key}:${type}`;
+    };
+    this.getProp = entry => {
+      const { key, access, type } = entry;
+      let value = this.data[access || key];
       if (!value) {
         value = '';
-      } else {
+      } else if (type === 'string') {
         value = escapeQuotes(value);
+      } else if (type === 'boolean') {
+        return value ? 'true' : 'false';
       }
       return value;
     };
@@ -21,7 +50,10 @@ class Relationship {
 
   writeHeader() {
     const file = 'output/Relationships_header.csv';
-    const contents = ':START_ID,role,:END_ID,:TYPE';
+    const contents = [':START_ID']
+      .concat(this.props.map(entry => this.getHeader(entry)))
+      .concat([':END_ID', ':TYPE'])
+      .join(',');
     fs.writeFileSync(file, contents);
   }
 
@@ -31,9 +63,10 @@ class Relationship {
   }
 
   writeRow(stream) {
-    const contents = [this.start, this.getRole(), this.end, this.type].join(
-      ','
-    );
+    const contents = [this.start]
+      .concat(this.props.map(entry => this.getProp(entry)))
+      .concat([this.end, this.type])
+      .join(',');
     stream.write(contents + '\n');
   }
 }
